@@ -1,0 +1,13 @@
+h1{
+  text-align: center;
+}
+
+body{
+  background-color: black;
+}
+
+table{
+  border: 2px solid black;
+  border-radius: 4px;
+
+}

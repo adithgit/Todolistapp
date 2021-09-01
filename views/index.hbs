@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>To Do List</h1>
+    <div class="container">
+        <div class="row">
+            <table class="table ">
+                <div class="input-group mb-3">
+                    <form action="/addItem">
+                        <input type="text" class="form-control" required name="listData" placeholder="Add item"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-success" type="submit" id="button-addon2">Add item</button>
+                    </form>
+                </div>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Activity</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                    <tr>
+                        <th scope="row">{{this._id}}</th>
+                        <td>{{this.workName}} </td>
+                        <td><a href="/remove/{{this._id}}" class="btn btn-success">Remove</a></td>
+                        <td><button onclick="editButton('{{this._id}}')" class="btn btn-success">Edit</button></td>
+                        <td id='{{this._id}}'  style="display:none" >
+                            <form action="/editItem" style="display: flex;"  >
+                                <input type="text" class="form-control" required name="listData" placeholder="Enter your edit"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <input type="text" class="form-control" style="display: none;" name="itemId" value="{{this._id}}"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-success" type="submit" id="button-addon2">Submit</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    function editButton(id){
+        console.log(id);
+        document.getElementById(id).style.display = "";
+    }
+</script>
+</html>
